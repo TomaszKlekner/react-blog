@@ -22,9 +22,8 @@ body {
 #root {
   flex-grow: 1;
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
-  flex-direction: column;
 }
 
 .App {
@@ -101,11 +100,15 @@ body {
 }
 
 .Nav li {
-  padding: 0;
+  padding: 1rem;
+}
+
+.Nav li:hover,
+.Nav li:focus {
+  padding: 1rem;
 }
 
 .Nav li a {
-  padding: 1rem;
   color: #fff;
   text-decoration: none;
 }
@@ -139,7 +142,6 @@ body {
   margin-top: 1rem;
   padding-bottom: 1rem;
   border-bottom: 1px solid lightgray;
-  cursor: pointer;
 }
 
 .Home .post a {

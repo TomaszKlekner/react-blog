@@ -72,7 +72,7 @@ function App() {
   };
 
   return (
-    <>
+    <div className='App'>
       <Header title='React Blog' />
       <Nav search={search} setSearch={setSearch} />
       <Routes>
@@ -97,7 +97,7 @@ function App() {
         <Route path='*' element={<Missing />} />
       </Routes>
       <Footer />
-    </>
+    </div>
   );
 }
 
