@@ -19,11 +19,6 @@ body {
   background-color: #efefef;
 }
 
-main {
-  flex: 1 0 auto;
-  width: 100%;
-}
-
 #root {
   flex-grow: 1;
   display: flex;
@@ -106,15 +101,11 @@ main {
 }
 
 .Nav li {
-  padding: 1rem;
-}
-
-.Nav li:hover,
-.Nav li:focus {
-  padding: 1rem;
+  padding: 0;
 }
 
 .Nav li a {
+  padding: 1rem;
   color: #fff;
   text-decoration: none;
 }
