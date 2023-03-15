@@ -43,6 +43,16 @@ function App() {
   const [postBody, setPostBody] = useState('');
   let navigate = useNavigate();
 
+  useEffect(() => {
+    const filteredResults = posts.filter(
+      (post) =>
+        post.body.toLocaleLowerCase().includes(search.toLocaleLowerCase()) ||
+        post.title.toLocaleLowerCase().includes(search.toLocaleLowerCase())
+    );
+
+    setSearchResults(filteredResults.reverse());
+  }, [posts, search]);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const id = posts.length ? posts[posts.length - 1].id + 1 : 1;
@@ -66,7 +76,7 @@ function App() {
       <Header title='React Blog' />
       <Nav search={search} setSearch={setSearch} />
       <Routes>
-        <Route path='/' element={<Home posts={posts} />} />
+        <Route path='/' element={<Home posts={searchResults} />} />
         <Route
           path='/post'
           element={
