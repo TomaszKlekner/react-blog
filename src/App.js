@@ -3,6 +3,7 @@ import Nav from './Nav';
 import Footer from './Footer';
 import Home from './Home';
 import NewPost from './NewPost';
+import EditPost from './EditPost';
 import PostPage from './PostPage';
 import About from './About';
 import Missing from './Missing';
@@ -17,6 +18,8 @@ function App() {
   const [searchResults, setSearchResults] = useState([]);
   const [postTitle, setPostTitle] = useState('');
   const [postBody, setPostBody] = useState('');
+  const [editTitle, setEditTitle] = useState('');
+  const [editBody, setEditBody] = useState('');
   let navigate = useNavigate();
 
   useEffect(() => {
@@ -66,6 +69,22 @@ function App() {
     }
   };
 
+  const handleEdit = async (id) => {
+    const datetime = format(new Date(), 'dd MMMM, yyyy pp');
+    const updatedPost = { id, title: editTitle, datetime, body: editBody };
+    try {
+      const response = await api.put(`/posts/${id}`, updatedPost);
+      setPosts(
+        posts.map((post) => (post.id === id ? { ...response.data } : post))
+      );
+      setEditTitle('');
+      setEditBody('');
+      navigate('/');
+    } catch (error) {
+      console.log(`Error: ${error.message}`);
+    }
+  };
+
   const handleDelete = async (id) => {
     try {
       await api.delete(`/posts/${id}`);
@@ -87,11 +106,25 @@ function App() {
           path='/post'
           element={
             <NewPost
+              posts={posts}
               postTitle={postTitle}
               setPostTitle={setPostTitle}
               postBody={postBody}
               setPostBody={setPostBody}
               handleSubmit={handleSubmit}
+            />
+          }
+        />
+        <Route
+          path='/edit/:id'
+          element={
+            <EditPost
+              posts={posts}
+              editTitle={editTitle}
+              setEditTitle={setEditTitle}
+              editBody={editBody}
+              setEditBody={setEditBody}
+              handleEdit={handleEdit}
             />
           }
         />
