@@ -66,10 +66,15 @@ function App() {
     }
   };
 
-  const handleDelete = (id) => {
-    const postsList = posts.filter((post) => post.id !== id);
-    setPosts(postsList);
-    navigate('/');
+  const handleDelete = async (id) => {
+    try {
+      await api.delete(`/posts/${id}`);
+      const postsList = posts.filter((post) => post.id !== id);
+      setPosts(postsList);
+      navigate('/');
+    } catch (error) {
+      console.log(`Error: ${error.message}`);
+    }
   };
 
   return (
