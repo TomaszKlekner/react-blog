@@ -99,16 +99,8 @@ body {
   align-items: center;
 }
 
-.Nav li {
-  padding: 1rem;
-}
-
-.Nav li:hover,
-.Nav li:focus {
-  padding: 1rem;
-}
-
 .Nav li a {
+  padding: 1rem;
   color: #fff;
   text-decoration: none;
 }
